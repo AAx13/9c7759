@@ -70,7 +70,6 @@ function Pagination({
               // Do not remove the aria-label below, it is used for Hatchways automation.
               aria-label={`Goto page ${pageNumber}`}
               onClick={() => onPageChange(pageNumber)}
-              disabled={pageNumber == currentPage ? true : false}
             >
               {pageNumber}
             </button>

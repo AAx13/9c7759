@@ -30,14 +30,14 @@ function usePagination({
       return [1]
     }
 
-    // [1 ... 2 3 4 ... 13] middle layout
-    if (currentPage > 2 && currentPage <= totalPageCount - 2) {
-      return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, totalPageCount]
-    }
-
     // [1 2 3 ... 13] beginning layout
     if (currentPage < 3) {
       return [1, 2, 3, DOTS, totalPageCount]
+    }
+
+    // [1 ... 2 3 4 ... 13] middle layout
+    if (currentPage > 2 && currentPage <= totalPageCount - 2) {
+      return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, totalPageCount]
     }
 
     // [1 ... 11 12 13] end layout
