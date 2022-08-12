@@ -25,26 +25,26 @@ function usePagination({
       return [1, 2, 3, DOTS, totalPageCount]
     }
 
-    // [1] 100 per page
+    // [1] single page
     if (totalPageCount == 1) {
       return [1]
     }
 
-    // [1 ... 2 3 4 ... 13] 50 per page
-    if (currentPage > 2 && currentPage < totalPageCount - 2) {
+    // [1 ... 2 3 4 ... 13] center selection
+    if (currentPage > 2 && currentPage <= totalPageCount - 2) {
       return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, totalPageCount]
     }
 
-    // [1 ... 11 12 13] 50 per page
-    if (currentPage > totalPageCount - 3) {
-      return [1, DOTS, totalPageCount - 2, totalPageCount - 1, totalPageCount]
-    }
-
-    // [1 2 3 ... 13] 50 per page
+    // [1 2 3 ... 13] earlier pages
     if (currentPage < 3) {
       return [1, 2, 3, DOTS, totalPageCount]
     }
 
+    // [1 ... 11 12 13] later pages
+    if (currentPage > totalPageCount - 2) {
+      return [1, DOTS, totalPageCount - 2, totalPageCount - 1, totalPageCount]
+    }
+    
   }, [currentPage, totalCount, pageSize])
   return paginationRange;
 }
