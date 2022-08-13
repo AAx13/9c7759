@@ -13,37 +13,33 @@ function usePagination({
   totalCount,
   pageSize,
 }) {
-  const paginationRange = useMemo(() => {
 
-    /** totalPageCount calculated using Math.ceil to ensure extra page is not cut off */
-    const totalPageCount = Math.ceil(totalCount / pageSize)
+  /** totalPageCount calculated using Math.ceil to ensure extra page is not cut off */
+  const totalPageCount = Math.ceil(totalCount / pageSize)
 
-    /** handles lower page count */
-    if (totalPageCount <= 3) {
+  /** handles lower page count */
+  if (totalPageCount <= 3) {
 
-      /** default */
-      return range(1, totalPageCount)
+    /** default */
+    return range(1, totalPageCount)
 
-    } else {
+  } else {
 
-      /** defautl - [1 2 3 ... 13] beginning layout */
-      if (currentPage < 3) {
-        return [1, 2, 3, DOTS, totalPageCount]
-      }
-
-      /** [1 ... 2 3 4 ... 13] middle layout */
-      if (currentPage > 2 && currentPage <= totalPageCount - 2) {
-        return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, totalPageCount]
-      }
-
-      /** [1 ... 11 12 13] end layout */
-      if (currentPage > totalPageCount - 2) {
-        return [1, DOTS, totalPageCount - 2, totalPageCount - 1, totalPageCount]
-      }
+    /** defautl - [1 2 3 ... 13] beginning layout */
+    if (currentPage < 3) {
+      return [1, 2, 3, DOTS, totalPageCount]
     }
 
-  }, [currentPage, totalCount, pageSize])
-  return paginationRange;
+    /** [1 ... 2 3 4 ... 13] middle layout */
+    if (currentPage > 2 && currentPage <= totalPageCount - 2) {
+      return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, totalPageCount]
+    }
+
+    /** [1 ... 11 12 13] end layout */
+    if (currentPage > totalPageCount - 2) {
+      return [1, DOTS, totalPageCount - 2, totalPageCount - 1, totalPageCount]
+    }
+  }
 }
 
 /**
