@@ -42,7 +42,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == 1 ? true : false} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
@@ -63,7 +63,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={pageNumber == currentPage ? "page" : false} // change this line to highlight a current page.
           >
             <button
               type="button"
@@ -84,7 +84,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == Math.ceil(totalCount / pageSize) ? true : false} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>
@@ -123,8 +123,8 @@ Pagination.defaultProps = {
   currentPage: 1,
   pageSize: 1,
   pageSizeOptions: [15, 25, 50, 100],
-  onPageChange: () => {},
-  onPageSizeOptionChange: () => {},
+  onPageChange: () => { },
+  onPageSizeOptionChange: () => { },
 };
 
 export default Pagination;
